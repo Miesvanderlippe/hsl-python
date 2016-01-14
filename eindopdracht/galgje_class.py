@@ -301,19 +301,19 @@ class Hangman:
 
         letterbox = self.guessed_letter_box()
 
-        return '{:>5}{:^60}\r\n' \
-               '{:>5}{:^60}\r\n' \
-               '{:>5}{:^60}\r\n' \
-               '{:>5}\r\n' \
-               '{:>5}\r\n' \
-               '{:>5}\r\n' \
-               '' \
+        return '{:>5}{:^60}\n' \
+               '{:>5}\n' \
+               '{:>5}{:^60}\n' \
+               '{:>5}\n' \
+               '{:>5}{:^60}\n' \
+               '{:>5}\n' \
+               '\n' \
                '{:^40}'.format(
                 hangman[self.tries_used][0], letterbox[0],
-                hangman[self.tries_used][1], letterbox[1],
-                hangman[self.tries_used][2], letterbox[2],
+                hangman[self.tries_used][1],
+                hangman[self.tries_used][2], letterbox[1],
                 hangman[self.tries_used][3],
-                hangman[self.tries_used][4],
+                hangman[self.tries_used][4], letterbox[2],
                 hangman[self.tries_used][5],
                 self.guesses_in_word())
 
