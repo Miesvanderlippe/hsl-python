@@ -246,7 +246,7 @@ class Hangman:
             return False
         else:
             self.guessed_letters.add(guess)
-
+        
         if guess in self.word_to_guess:
             return True
         else:
