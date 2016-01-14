@@ -135,6 +135,11 @@ class Highscores:
                     if type(row) == list and len(row) == 6
                 ]
 
+            self.scores = [
+                    row for row in self.scores
+                    if row[5].isdigit()
+                ]
+
             # strip position indicator (not used)
             self.scores = [x[1::] for x in self.scores]
 
