@@ -116,6 +116,10 @@ class Highscores:
 
     # loads scores from file
     def load_scores_from_file(self):
+
+        if not self.file.exists():
+            return False
+
         try:
             scores_in_file = strip_empty_rows(self.file.get_lines())
             scores = [x.split(';') for x in scores_in_file]
@@ -222,7 +226,7 @@ class Highscores:
     def default_scores(amount: int = 10)->list:
         scores = []
         for x in range(1, amount + 1):
-            scores.append([x, '<leeg>', '<leeg>', '<leeg>', '<leeg>', 0])
+            scores.append([x, '<leeg>', 0, 0, 0, 0])
 
         return scores
 
@@ -240,9 +244,10 @@ class Hangman:
 
         if guess not in self.allowed_chars:
             return False
-
-        if guess not in self.guessed_letters:
+        else:
             self.guessed_letters.add(guess)
+
+        if guess in self.word_to_guess:
             return True
         else:
             self.tries_used += 1
@@ -264,7 +269,10 @@ class Hangman:
             return True
 
         else:
-            self.tries_used += 3
+            if self.tries_used > 6:
+                self.tries_used = 9
+            else:
+                self.tries_used += 3
             return False
 
     def guessed_letter_box(self)->list:
@@ -396,9 +404,9 @@ def main()->None:
             time_start = time()
 
             print(word)
+            print(game.main_interface())
 
             while game.player_alive() and not game.won():
-                print(game.main_interface())
                 player_input = ''
 
                 while len(player_input) == 0:
@@ -411,6 +419,8 @@ def main()->None:
 
                 else:
                     game.guess_letter(player_input)
+
+                print(game.main_interface())
 
             if game.won():
                 print('U heeft gewonnen!')
