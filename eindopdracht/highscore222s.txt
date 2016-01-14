@@ -1,0 +1,11 @@
+Positie;Naam;Lengte;Fouten;Tijd;Score
+1;Name here;23;0;6;230000
+2;Name here;17;0;3;170000
+3;Name here;22;1;72;3014
+4;Mies;7;15;4;1560
+5;Mies;7;15;4;1560
+6;Mies;7;15;4;1560
+7;Mies;7;15;4;1560
+8;Mies;7;15;4;1560
+9;Mies;7;15;4;1560
+10;Mies;7;15;4;1560
