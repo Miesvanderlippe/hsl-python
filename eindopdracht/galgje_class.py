@@ -149,6 +149,16 @@ class Highscores:
 
             return True
 
+    def would_get_position(self, score: int)->int:
+        if len(self.scores) == 0:
+            return 1
+
+        for position in range(0, len(self.scores)):
+            if score > int(self.scores[position][4]):
+                return position+1
+
+        return -1
+
     def would_be_highscore(self, score: int)->bool:
 
         if len(self.scores) < 10:
@@ -251,7 +261,7 @@ class Hangman:
             return False
         else:
             self.guessed_letters.add(guess)
-        
+
         if guess in self.word_to_guess:
             return True
         else:
@@ -301,7 +311,8 @@ class Hangman:
 
         letterbox = self.guessed_letter_box()
 
-        return '{:>5}{:^60}\n' \
+        return '{:>5}{:>41}\n'\
+               '{:>5}{:^60}\n' \
                '{:>5}\n' \
                '{:>5}{:^60}\n' \
                '{:>5}\n' \
@@ -309,6 +320,7 @@ class Hangman:
                '{:>5}\n' \
                '\n' \
                '{:^40}'.format(
+                'Galgje:', 'Gebruikte letters',
                 hangman[self.tries_used][0], letterbox[0],
                 hangman[self.tries_used][1],
                 hangman[self.tries_used][2], letterbox[1],
@@ -362,44 +374,48 @@ def main()->None:
     name = ''
 
     while len(name) == 0:
-        name = strip_nonalpha(input('geef uw naam'))
+        name = strip_nonalpha(input('Wat is je naam?:\n'))
 
     # main loop
     while True:
 
         # <editor-fold desc="Menu options & selection">
-        selection = input('Selecteer een van de volgende opties:\n'
-                          '1) Een woord toevoegen\n2) Het spel spelen\n'
-                          '3) De ranking bekijken\n4) Stoppen\n')
+        selection = input('1. Een woord toevoegen\n2. Het spel spelen\n'
+                          '3. De ranking bekijken\n4. Stoppen\n\nWat wil je '
+                          'doen? [1 - 4]')
 
         try:
             selection = int(selection)
         except ValueError:
-            print('Geen geldige optie geselecteerd')
+            print('Dit is geen geldige invoer, probeer opnieuw!')
             continue
 
         if selection not in range(1, 5):
-            print('Geen geldige optie geselecteerd')
+            print('Dit is geen geldige invoer, probeer opnieuw!')
             continue
         # </editor-fold>
 
         # <editor-fold desc="Add a word">
         if selection == 1:
 
-            word_to_add = input('Geef het woord wat je toe wilt voegen')
+            word_to_add = input('Voer een woord in die je wilt toevoegen aan '
+                                'de woordenlijst:\n')
             word_to_add = strip_nonalpha(word_to_add)
 
-            if len(word_to_add) > 0:
+            if 3 < len(word_to_add) < 39:
 
                 if wordlist.add(word_to_add):
-                    print('Woord toegevoegd')
+                    print('Het woord {} is toegevoegd aan de '
+                          'woordenlijst!\n'.format(word_to_add))
                     wordlist.save()
 
                 else:
-                    print('Het woord bestond al')
+                    print('Het woord {} staat al in de '
+                          'woordenlijst!'.format(word_to_add))
 
             else:
-                print('Er is geen geldig woord gevonden')
+                print('Het woord moet minstens 3 letters lang zijn en maximaal '
+                      '38 letters lang!')
         # </editor-fold>
 
         # <editor-fold desc="Main game">
@@ -416,8 +432,11 @@ def main()->None:
 
                 while len(player_input) == 0:
                     player_input = strip_nonalpha(
-                            input('Geef een letter of raad het woord\n')
+                            input('Typ een letter of het woord:\n')
                         )
+
+                    if len(player_input) == 0:
+                        print('Dit is geen geldige invoer probeer opnieuw!')
 
                 if len(player_input) > 1:
                     game.guess_word(player_input)
@@ -428,20 +447,30 @@ def main()->None:
                 print(game.main_interface())
 
             if game.won():
-                print('U heeft gewonnen!')
+
                 time_end = time()
                 duration_sec = int(round(time_end-time_start))  # round != int?
                 score = highscores.calculate_score(duration_sec, word,
                                                    game.tries_used)
 
-                if highscores.would_be_highscore(score):
+                print('Je hebt het geraden! Het woord was {}\n\n'
+                      'Je hebt {} punten gescoord\n'.format(word, score))
 
-                    print('U heeft een highscore behaalt!')
+                if highscores.would_be_highscore(score):
+                    position = highscores.would_get_position(score)
+
                     highscores.add_score(name, len(word), game.tries_used,
                                          duration_sec, score)
                     highscores.save()
+
+                    print('Daarmee kom je op plaats {} in de '
+                          'ranking!\n'.format(position))
+                    print(highscores.printable_highscores())
+
             else:
-                print('Helaas u bent overleden!')
+                print('Helaas, je hebt het woord niet geraden. '
+                      'Het woord was {}\n'.format(word))
+
         # </editor-fold>
 
         # <editor-fold desc="View highscores">
