@@ -1,12 +1,12 @@
 from os import path, linesep
 from random import choice
 from time import time
-from string import ascii_letters
+from string import ascii_lowercase
+import re
 
 __author__ = 'Mies van der Lippe'
 
 # <editor-fold desc="Hangman art">
-ascii_letters_set = set(ascii_letters.split())
 hangman = [
     ['          ', '          ', '          ',
      '          ', '          ', '          '],
@@ -352,7 +352,7 @@ def longest_item_in_list_list(subject: list, key: int):
 
 
 def strip_nonalpha(word: str)->str:
-    return ''.join([x for x in word if x in ascii_letters_set])
+    return re.sub('[^a-zA-Z]+', '', word)
 
 
 def array_chunk(to_chunk: list, size: int)->list:
