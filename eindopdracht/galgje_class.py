@@ -167,12 +167,11 @@ class Highscores:
         else:  # no else needed but whatever.
             lowest_score = self.scores[-1]
 
-            return int(lowest_score[3]) < score
+            return int(lowest_score[4]) < score
 
     # sort scores, trim to 10
     def sort_scores(self)->None:
-        self.scores.sort(key=lambda item: (int(item[4]), item))
-        self.scores.reverse()
+        self.scores.sort(key=lambda item: (int(item[4]), item), reverse=True)
         self.scores = self.scores[0:10]
 
     # add a score to scores
