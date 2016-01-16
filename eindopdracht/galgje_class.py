@@ -253,6 +253,7 @@ class Hangman:
         self.tries_used = 0
         self.guessed_letters = set()
         self.allowed_chars = ascii_lowercase
+        self.word_set = set([x for x in word])
 
     def guess_letter(self, guess: str)->bool:
         guess = guess.lower()
@@ -272,10 +273,7 @@ class Hangman:
         return self.tries_used < 9
 
     def won(self)->bool:
-        for letter in self.word_to_guess:
-            if letter not in self.guessed_letters:
-                return False
-        return True
+        return self.word_set.issubset(self.guessed_letters)
 
     def guess_word(self, guess: str)->bool:
         guess = guess.lower()

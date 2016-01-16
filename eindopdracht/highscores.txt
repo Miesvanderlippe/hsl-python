@@ -1,5 +1,6 @@
-Positie;Naam;Lengte;Fouten;Tijd;Score
-1;mies;21;0;4;210000
-2;mies;13;1;20;6190
-3;mies;11;4;15;1803
-4;mies;13;4;31;1040
+Positie;Naam;Lengte;Fouten;Tijd;Score
+1;mies;21;0;4;210000
+2;mies;13;1;20;6190
+3;Nies;15;2;25;2941
+4;mies;11;4;15;1803
+5;mies;13;4;31;1040
