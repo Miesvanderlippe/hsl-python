@@ -327,6 +327,7 @@ class Hangman:
                '{:>5}{:^60}\n' \
                '{:>5}\n' \
                '\n' \
+               '{:^40}\n' \
                '{:^40}'.format(
                 'Galgje:', 'Gebruikte letters',
                 hangman[self.tries_used][0], letterbox[0],
@@ -335,6 +336,7 @@ class Hangman:
                 hangman[self.tries_used][3],
                 hangman[self.tries_used][4], letterbox[2],
                 hangman[self.tries_used][5],
+                'Het te raden woord:',
                 self.guesses_in_word())
 
 # <editor-fold desc="Standalone functions">
