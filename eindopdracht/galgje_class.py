@@ -159,8 +159,13 @@ class Highscores:
             self.scores = self.default_scores()
 
     # loads scores from file
-    def load_scores_from_file(self):
+    def load_scores_from_file(self)->bool:
 
+        """
+        Triest to load scores from the file also filtering all scores
+        and the headers
+        :return: Whether loading was successful. Results are saved to self.
+        """
         if not self.file.exists():
             return False
 
@@ -197,6 +202,11 @@ class Highscores:
             return True
 
     def would_get_position(self, score: int)->int:
+        """
+        Checks what position a score would get in the highscores
+        :param score: Score to check
+        :return: Position score would get. -1 if >position 10
+        """
         if len(self.scores) == 0:
             return 1
 
@@ -211,6 +221,11 @@ class Highscores:
 
     def would_be_highscore(self, score: int)->bool:
 
+        """
+        Check whether a score would be a highscore (checks against lowest score)
+        :param score: Score to check
+        :return: Whether score would be in highscores
+        """
         if len(self.scores) < 10:
             return True
 
@@ -221,12 +236,23 @@ class Highscores:
 
     # sort scores, trim to 10
     def sort_scores(self)->None:
+        """
+        Sorts the scores
+        """
         self.scores.sort(key=lambda item: (int(item[4]), item), reverse=True)
         self.scores = self.scores[0:10]
 
     # add a score to scores
     def add_score(self, name: str, length: int, mistakes: int, seconds: int,
-                  score: int):
+                  score: int)->None:
+        """
+        Add a score to the highscore list. List is then ordered & trimmed
+        :param name: name of the player
+        :param length: Length of the word
+        :param mistakes: Mistakes made by player
+        :param seconds: Time it took to guess the word ( in seconds)
+        :param score: Calculated score
+        """
         name = ''.join(name[0:20])
         self.scores.append(
                 [name, str(length), str(mistakes), str(seconds), str(score)]
@@ -235,6 +261,9 @@ class Highscores:
 
     # save scores
     def save(self)->None:
+        """
+        Save the highscore list to file
+        """
 
         # list with positions (only make positions for scores we have
         tmp_scores = [[x] for x in range(1, len(self.scores)+1)]
@@ -257,7 +286,10 @@ class Highscores:
 
     # printable highscores
     def printable_highscores(self)->str:
-
+        """
+        Gives a printable highscore table as a string w/ linebreaks
+        :return:
+        """
         position = 0
         tmp_scores = self.scores
 
@@ -279,19 +311,35 @@ class Highscores:
         return string
 
     @staticmethod
-    def calculate_score(time_elapsed: int, word: str, used_tries: int)->int:
+    def calculate_score(time_elapsed: int, word: str, faults: int)->int:
+        """
+        Calculates the score
+        :param time_elapsed: Time it took to guess the word ( seconds)
+        :param word: Word the player guessed
+        :param faults: Amount of mistakes the player made
+        :return: The score
+        """
         return int(
-                round(10000 * (len(word) / ((time_elapsed * used_tries) + 1)))
+                round(10000 * (len(word) / ((time_elapsed * faults) + 1)))
         )
 
     # default headers
     @staticmethod
     def default_headers()->list:
+        """
+        Default headers for the scoreboard
+        :return: Default headers
+        """
         return ['Positie', 'Naam', 'Lengte', 'Fouten', 'Tijd', 'Score']
 
     # set of default scores
     @staticmethod
     def default_scores(amount: int = 10)->list:
+        """
+        Default scores to be used to fill the scoreboard
+        :param amount: Entries to be returned
+        :return: List of placeholder scores
+        """
         scores = []
         for x in range(1, amount + 1):
             scores.append(['<leeg>', 0, 0, 0, 0])
