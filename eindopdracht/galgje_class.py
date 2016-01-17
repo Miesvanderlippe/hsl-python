@@ -94,26 +94,50 @@ class WordList:
 
     # saves the word list
     def save(self)->None:
+        """
+        Save the wordlist
+        """
         self.file.save(self.word_list)
 
     # returns the entire list
     def get_word_list(self)->list:
+        """
+        Return the wordlist as a list
+        :return: The wordlist
+        """
         return self.word_list
 
     # get a random word from the word list
     def get_random_word(self)->str:
+        """
+        Returns a random word from the wordlist using random.choice
+        :return: A random word from wordlist
+        """
         return choice(self.word_list)
 
     # sort the word list
     def sort_word_list(self)->None:
+        """
+        Sorts the wordlist as specified in instructions
+        """
         self.word_list.sort(key=lambda item: (len(item), item))
 
     # returns if an item is in the list already
     def in_list(self, word: str)->bool:
+        """
+        Checks if a word already exists in the wordlist
+        :param word: Word to check
+        :return: Whether word exists in wordlist
+        """
         return word in self.word_list
 
     # Add a file to the word list (saves it too)
     def add(self, word: str)->bool:
+        """
+        Add a word to the wordlist
+        :param word: Word to add
+        :return: Whether addition was successful
+        """
         if word not in self.word_list:
             self.word_list.append(word)
             self.sort_word_list()
