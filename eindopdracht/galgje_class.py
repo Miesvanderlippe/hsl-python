@@ -45,7 +45,7 @@ class File:
     # overwrite file with lines
     def save(self, lines: list)->None:
         with open(self.path, 'w') as f:
-            return f.write(linesep.join(lines))
+            return f.write('\n'.join(lines))
 
     # returns if a file exists
     def exists(self)->bool:
