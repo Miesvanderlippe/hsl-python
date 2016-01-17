@@ -357,6 +357,11 @@ class Hangman:
         self.word_set = set([x for x in word])
 
     def guess_letter(self, guess: str)->bool:
+        """
+        Guess a letter in the word
+        :param Guess: letter to guess
+        :return: Whether guess was successful
+        """
         guess = guess.lower()
 
         if guess not in self.allowed_chars:
@@ -371,12 +376,26 @@ class Hangman:
             return False
 
     def player_alive(self)->bool:
+        """
+        Check if the player still lives
+        :return: Whether the player is alive
+        """
         return self.tries_used < 9
 
     def won(self)->bool:
+        """
+        Check if the game has been won yet
+        :return: Whether the game has been won
+        """
         return self.word_set.issubset(self.guessed_letters)
 
     def guess_word(self, guess: str)->bool:
+        """
+        Guess the entire word. Also updates guessed letters if
+        correct, lives when incorrect.
+        :param guess: Word to guess
+        :return: Whether the word was correct
+        """
         guess = guess.lower()
         if guess == self.word_to_guess:
             self.guessed_letters.update([char for char in guess])
@@ -390,7 +409,15 @@ class Hangman:
             return False
 
     def guessed_letter_box(self)->list:
-
+        """
+        Returns the guessed letters in the alphabet, in 3 chunks.
+        Letters that haven't been guessed are stars
+        TODO:
+        - kwarg for char instead of *
+        - amount of chunks
+        - Rename the function
+        :return: List of 3 strings of guessed letters in alphabet
+        """
         stars_letters = ['*' if x not in sorted(self.guessed_letters) else x
                          for x in self.allowed_chars]
         chunks = array_chunk(stars_letters, 9)
@@ -399,7 +426,11 @@ class Hangman:
         return chunks
 
     def guesses_in_word(self):
-
+        """
+        Returns the guessed letters in the word with not guessed
+        letters blanked out by a *
+        :return: word w/ not guessed letters blanked out
+        """
         return ' '.join(
                 [
                     '*' if x not in self.guessed_letters else x
@@ -407,7 +438,11 @@ class Hangman:
                 ])
 
     def main_interface(self)->str:
-
+        """
+        Directly printable game interface w/ guessed letters,
+        blanked out word and gallow
+        :return:
+        """
         letterbox = self.guessed_letter_box()
 
         return '{:>5}{:>41}\n'\
