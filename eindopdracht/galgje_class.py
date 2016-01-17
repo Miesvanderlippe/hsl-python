@@ -38,25 +38,44 @@ class File:
         self.path = file_path
 
     # return lines in file
-    def get_lines(self):
+    def get_lines(self)->list:
+        """
+        returns a list of lines in the file (w/o linebreaks)
+        :return: Lines in file
+        """
         with open(self.path, 'r') as f:
             return f.read().splitlines()
 
     # overwrite file with lines
     def save(self, lines: list)->None:
+        """
+        Save the list lines as lines to the file
+        :param lines: list of lines to be saved
+        :return: None
+        """
         with open(self.path, 'w') as f:
-            return f.write('\n'.join(lines))
+            f.write('\n'.join(lines))
 
     # returns if a file exists
     def exists(self)->bool:
+        """
+        Returns whether file specified in constructor exists
+        :return: Whether file exists
+        """
         return path.isfile(self.path)
 
     # append lines by using a list
     def append_lines(self)->None:
+        """
+        Appends lines in list to the file NOT IMPLEMENTED
+        """
         raise NotImplementedError
 
     # append text to file
     def append_text(self)->None:
+        """
+        Appends raw texts to the file NOT IMPLEMENTED
+        """
         raise NotImplementedError
 
 
