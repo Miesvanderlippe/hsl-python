@@ -1,4 +1,4 @@
-from os import path, linesep
+from os import path
 from random import choice
 from time import time
 from string import ascii_lowercase
@@ -412,7 +412,7 @@ def main()->None:
                                 'de woordenlijst:\n')
             word_to_add = strip_nonalpha(word_to_add)
 
-            if 3 < len(word_to_add) < 39:
+            if 2 < len(word_to_add) < 39:
 
                 if wordlist.add(word_to_add):
                     print('Het woord {} is toegevoegd aan de '

@@ -1,0 +1,4 @@
+Positie;Naam;Lengte;Fouten;Tijd;Score
+1;M;23;0;7;230000
+2;Meis;14;0;4;140000
+3;Meis;13;0;8;130000
