@@ -216,13 +216,17 @@ class Highscores:
     def printable_highscores(self)->str:
 
         position = 0
+        tmp_scores = self.scores
+
+        if len(tmp_scores) < 11:
+            tmp_scores.extend(self.default_scores(10-len(self.scores)))
 
         string = '{:<10}{:<20}{:<10}{:<10}{:<10}{:<15}\n'.format(
                 self.headers[0], self.headers[1], self.headers[2],
                 self.headers[3], self.headers[4], self.headers[5]
         )
 
-        for scores in self.scores:
+        for scores in tmp_scores:
             position += 1
             string += '{:<10}{:<20}{:<10}{:<10}{:<10}{:<15}\n'.format(
                     position, scores[0], scores[1], scores[2],
@@ -369,8 +373,8 @@ def array_chunk(to_chunk: list, size: int)->list:
 def main()->None:
 
     # word list
-    word_list_path = 'wordlist.txt'
-    highscores_path = 'highscores.txt'
+    word_list_path = 'woorden.lst'
+    highscores_path = 'rankings.txt'
 
     wordlist = WordList(word_list_path)
     highscores = Highscores(highscores_path)
@@ -428,7 +432,6 @@ def main()->None:
             game = Hangman(word)
             time_start = time()
 
-            print(word)
             print(game.main_interface())
 
             while game.player_alive() and not game.won():
