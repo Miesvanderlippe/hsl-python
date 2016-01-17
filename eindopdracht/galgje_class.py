@@ -359,7 +359,7 @@ class Hangman:
     def guess_letter(self, guess: str)->bool:
         """
         Guess a letter in the word
-        :param Guess: letter to guess
+        :param guess: letter to guess
         :return: Whether guess was successful
         """
         guess = guess.lower()
@@ -507,14 +507,14 @@ def array_chunk(to_chunk: list, size: int)->list:
     :return: Chunks in a list
     """
     return [
-        to_chunk[offset:offset+size] for offset in range(0, len(to_chunk), size)
+        to_chunk[offset:offset+size]
+        for offset in range(0, len(to_chunk), size)
         ]
 # </editor-fold>
 
 
 def main()->None:
 
-    # word list
     word_list_path = 'woorden.lst'
     highscores_path = 'rankings.txt'
 
@@ -524,6 +524,7 @@ def main()->None:
     name = ''
 
     while len(name) == 0:
+        # allow Uppercase letters in names
         name = strip_nonalpha(input('Wat is je naam?:\n'))
 
     # main loop
@@ -536,6 +537,7 @@ def main()->None:
 
         try:
             selection = int(selection)
+
         except ValueError:
             print('Dit is geen geldige invoer, probeer opnieuw!')
             continue
@@ -564,12 +566,13 @@ def main()->None:
                           'woordenlijst!'.format(word_to_add))
 
             else:
-                print('Het woord moet minstens 3 letters lang zijn en maximaal '
-                      '38 letters lang!')
+                print('Het woord moet minstens 3 letters lang zijn en '
+                      'maximaal 38 letters lang!')
         # </editor-fold>
 
         # <editor-fold desc="Main game">
         elif selection == 2:
+
             word = wordlist.get_random_word()
             game = Hangman(word)
             time_start = time()
@@ -577,6 +580,7 @@ def main()->None:
             print(game.main_interface())
 
             while game.player_alive() and not game.won():
+
                 player_input = ''
 
                 while len(player_input) == 0:
@@ -606,8 +610,8 @@ def main()->None:
                       'Je hebt {} punten gescoord\n'.format(word, score))
 
                 if highscores.would_be_highscore(score):
-                    position = highscores.would_get_position(score)
 
+                    position = highscores.would_get_position(score)
                     highscores.add_score(name, len(word), game.tries_used,
                                          duration_sec, score)
                     highscores.save()
