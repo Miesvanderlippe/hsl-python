@@ -138,7 +138,10 @@ class Highscores:
 
             self.scores = [
                     row for row in self.scores
-                    if row[5].isdigit()
+                    if row[2].isdigit() and
+                    row[3].isdigit() and
+                    row[4].isdigit() and
+                    row[5].isdigit()
                 ]
 
             # strip position indicator (not used)
@@ -157,6 +160,9 @@ class Highscores:
         for position in range(0, len(self.scores)):
             if score > int(self.scores[position][4]):
                 return position+1
+
+        if len(self.scores) < 10:
+            return len(self.scores)+1
 
         return -1
 
