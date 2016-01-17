@@ -251,7 +251,7 @@ class Highscores:
     def default_scores(amount: int = 10)->list:
         scores = []
         for x in range(1, amount + 1):
-            scores.append([x, '<leeg>', 0, 0, 0, 0])
+            scores.append(['<leeg>', 0, 0, 0, 0])
 
         return scores
 
