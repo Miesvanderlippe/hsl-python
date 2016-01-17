@@ -469,29 +469,43 @@ class Hangman:
 
 
 def minutes_seconds(seconds: int)->str:
+    """
+    amount of minutes and seconds in any amount of seconds
+    TODO
+    - Kwargs for m and s strings
+    :param seconds: Amount of seconds to display
+    :return: string with minutes and seconds
+    """
     m, s = divmod(seconds, 60)
     return '{}m{}s'.format(m, s)
 
 
 def strip_empty_rows(subject: list)->list:
-        return [x for x in subject if len(x) > 0]
-
-
-def longest_item_in_list_list(subject: list, key: int):
-    length_longest_item = 0
-
-    for item in subject:
-        if len(item[key]) > length_longest_item:
-            length_longest_item = len(item[key])
-
-    return length_longest_item
+    """
+    Strips a list of it's empty items (len 0)
+    :param subject: List to strip
+    :return: Stripped list
+    """
+    return [x for x in subject if len(x) > 0]
 
 
 def strip_nonalpha(word: str)->str:
+    """
+    Strip any non alphabetic character from a string
+    :param word: String to strip
+    :return: Stripped string
+    """
     return re.sub('[^a-zA-Z]+', '', word)
 
 
 def array_chunk(to_chunk: list, size: int)->list:
+    """
+    Divides an list into chunks. Last chunk will have
+    any remaining items
+    :param to_chunk: List to divide
+    :param size: Length of each chunk
+    :return: Chunks in a list
+    """
     return [
         to_chunk[offset:offset+size] for offset in range(0, len(to_chunk), size)
         ]
