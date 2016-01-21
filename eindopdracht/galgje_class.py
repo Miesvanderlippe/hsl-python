@@ -6,7 +6,20 @@ import re
 
 __author__ = 'Mies van der Lippe'
 
+"""
+student : Mies van der Lippe
+studentnummer : s1096607
+vak : binp periode 1
+opdracht : eindopdracht galgje
+klas : bin1e
+"""
+
 # <editor-fold desc="Hangman art">
+"""
+ik kan een bestand lezen, een split uitvoeren en een list list gebruiken
+zie hiervoor de highscores. Het galgje karakter uit een betsand lezen
+heeft geen toegevoegde waare
+"""
 hangman = [
     ['          ', '          ', '          ',
      '          ', '          ', '          '],
