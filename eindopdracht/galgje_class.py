@@ -99,8 +99,8 @@ class WordList:
         self.file = File(file_path)
 
         if not self.file.exists():
-            raise FileNotFoundError('Kon de woordenlijst niet vinden. Sla deze '
-                                    'op als {}'.format(file_path))
+            raise FileNotFoundError('Kon de woordenlijst niet vinden. Sla'
+                                    ' deze op als {}'.format(file_path))
 
         self.word_list = self.file.get_lines()
         self.word_list = strip_empty_rows(self.word_list)
@@ -235,7 +235,8 @@ class Highscores:
     def would_be_highscore(self, score: int)->bool:
 
         """
-        Check whether a score would be a highscore (checks against lowest score)
+        Check whether a score would be a highscore
+        (checks against lowest score)
         :param score: Score to check
         :return: Whether score would be in highscores
         """
