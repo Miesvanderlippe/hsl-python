@@ -9,15 +9,20 @@ class Student:
         self.residence = student_residence
 
     @property
-    def student_nr(self):
+    def student_nr(self)->int:
         print('using getter')
         return self._student_nr
 
     @student_nr.setter
-    def student_nr(self, student_nr: int):
+    def student_nr(self, student_nr: int)->None:
         print('using setter')
         self._student_nr = student_nr
 
+    def set_age(self, new_age: int)->None:
+        self.age = new_age
+
+    def get_age(self)->int:
+        return self.age
 
 def main()->None:
     student = Student(1, 'Mies', 'Den Haag', 2)
