@@ -24,12 +24,23 @@ class Student:
     def get_age(self)->int:
         return self.age
 
-def main()->None:
-    student = Student(1, 'Mies', 'Den Haag', 2)
-    print(student.student_nr)
-    student.student_nr = 13
 
-    pass
+def main()->None:
+
+    students = [Student(1, 'Mies', 'Den Haag', 12),
+                Student(1, 'Harry', 'Den Haag', 42),
+                Student(1, 'Gerrit', 'Den Haag', 32),
+                Student(1, 'Zoe', 'Den Haag', 18)]
+
+    total_age = 0
+
+    for student in students:
+        total_age += student.get_age()
+
+    average_age = total_age / len(students)
+
+    print(average_age)
+
 
 if __name__ == '__main__':
     main()
