@@ -20,7 +20,7 @@ class BankAccount:
         self.balance -= int_or_zero(amount)
 
 
-def int_or_zero(presumed_int)->int:
+def int_or_zero(presumed_int: any)->int:
     try:
         presumed_int = int(presumed_int)
         return presumed_int
