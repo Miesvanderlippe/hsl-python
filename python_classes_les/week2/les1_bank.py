@@ -2,7 +2,7 @@
 class BankAccount:
 
     def __init__(self, starting_balance: int)->None:
-        self.balance = starting_balance
+        self.balance = int_or_zero(starting_balance)
 
     def __str__(self)->str:
         return 'Balance: {}'.format(self.balance)
