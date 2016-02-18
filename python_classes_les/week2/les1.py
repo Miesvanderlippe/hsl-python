@@ -15,7 +15,7 @@ class Student:
                'Name:       {}\n' \
                'Residence:  {}\n' \
                'EC:         {}\n'.format(self.student_nr, self.age, self.name,
-                                   self.residence, self.total_ec)
+                                         self.residence, self.total_ec)
 
     # student nr
     def set_student_nr(self, new_number: int)->None:
