@@ -21,7 +21,14 @@ class BankAccount:
 
 
 def main()->None:
-    pass
+
+    test_account = BankAccount(100)
+
+    test_account.withdraw(50)
+    print(test_account)
+
+    test_account.deposit(100)
+    print(test_account)
 
 if __name__ == '__main__':
     main()
