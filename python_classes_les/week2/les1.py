@@ -9,6 +9,14 @@ class Student:
         self.residence = student_residence
         self.total_ec = 0
 
+    def __str__(self)->str:
+        return 'Student nr: {}\n' \
+               'Age:        {}\n' \
+               'Name:       {}\n' \
+               'Residence:  {}\n' \
+               'EC:         {}\n'.format(self.student_nr, self.age, self.name,
+                                   self.residence, self.total_ec)
+
     # student nr
     def set_student_nr(self, new_number: int)->None:
         self.student_nr = new_number
@@ -60,7 +68,7 @@ def main()->None:
     average_age = total_age / len(students)
 
     print(average_age)
-
+    print(students[0])
 
 if __name__ == '__main__':
     main()
