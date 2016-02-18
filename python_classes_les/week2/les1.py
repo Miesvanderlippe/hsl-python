@@ -3,26 +3,46 @@ class Student:
 
     def __init__(self, student_nr: int, student_name: str,
                  student_residence: str, student_age: int)->None:
-        self._student_nr = student_nr
+        self.student_nr = student_nr
         self.age = student_age
         self.name = student_name
         self.residence = student_residence
+        self.total_ec = 0
 
-    @property
-    def student_nr(self)->int:
-        print('using getter')
-        return self._student_nr
+    # student nr
+    def set_student_nr(self, new_number: int)->None:
+        self.student_nr = new_number
 
-    @student_nr.setter
-    def student_nr(self, student_nr: int)->None:
-        print('using setter')
-        self._student_nr = student_nr
+    def get_student_nr(self)->int:
+        return self.student_nr
 
+    # age
     def set_age(self, new_age: int)->None:
         self.age = new_age
 
     def get_age(self)->int:
         return self.age
+
+    # name
+    def set_name(self, new_name: str)->None:
+        self.name = new_name
+
+    def get_name(self)->str:
+        return self.name
+
+    # residence
+    def set_residence(self, new_residence: str)->None:
+        self.residence = new_residence
+
+    def get_residence(self)->str:
+        return self.residence
+
+    # ec
+    def set_total_ec(self, new_ec: int)->None:
+        self.total_ec = new_ec
+
+    def get_total_ec(self)->int:
+        return self.total_ec
 
 
 def main()->None:
