@@ -62,13 +62,19 @@ def main()->None:
 
     total_age = 0
 
+    example_student = students[0]
+
     for student in students:
         total_age += student.get_age()
 
     average_age = total_age / len(students)
 
     print(average_age)
-    print(students[0])
+    print(example_student)
+
+    current_ec = example_student.get_total_ec()
+    new_ec = current_ec + 5
+    example_student.set_total_ec(new_ec)
 
 if __name__ == '__main__':
     main()
