@@ -16,6 +16,9 @@ class BankAccount:
     def deposit(self, amount: int)->None:
         self.balance += amount
 
+    def withdraw(self, amount: int)->None:
+        self.balance -= amount
+
 
 def main()->None:
     pass
