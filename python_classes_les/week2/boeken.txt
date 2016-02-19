@@ -1,0 +1,10 @@
+Harry Potter|J.K. Rowling|225
+De Aanslag|Harry Mulisch|321
+Lord of the Rings deel 1|J.R.R. Tolkien|412
+Lord of the Rings deel 2|J.R.R. Tolkien|381
+Lord of the Rings deel 3|J.R.R. Tolkien|464
+Dolfje Weerwolfje 1|Japie Krekel|98
+Dolfje Weerwolfje 2|Japie Krekel|102
+Dolfje Weerwolfje 3|Japie Krekel|79
+Dolfje Weerwolfje 4|Japie Krekel|132
+De Bijbel|Meerdere auteurs|1643
