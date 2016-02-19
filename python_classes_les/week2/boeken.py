@@ -44,7 +44,21 @@ class Book:
 
 
 def main():
-    pass
+
+    library = [
+        Book('Boek 1', 'Mies', 1000),
+        Book('Boek 2', 'Erik', 1000),
+        Book('Boek 3', 'Gert', 1000),
+        Book('Boek 4', 'John', 1000),
+    ]
+
+    total_pages = 0
+
+    for book in library:
+        total_pages += book.get_pages()
+
+    average_pages = round(total_pages / len(library))
+    print('Average amount of pages: {}'.format(average_pages))
 
 if __name__ == '__main__':
     main()
