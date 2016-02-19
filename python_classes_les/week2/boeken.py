@@ -45,7 +45,7 @@ class Book:
         writer_last_name = self.writer.split(' ')
         writer_last_name = writer_last_name[-1]
 
-        new_code = self.title[0:2] + writer_last_name[0:2]
+        new_code = writer_last_name[0:2] + self.title[0:2]
         new_code = new_code.upper()
 
         return new_code
