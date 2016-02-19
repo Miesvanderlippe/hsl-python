@@ -1,3 +1,38 @@
+from os import path
+
+
+class File:
+
+    def __init__(self, file_path: str)->None:
+        self.path = file_path
+
+    # return lines in file
+    def get_lines(self)->list:
+        """
+        returns a list of lines in the file (w/o linebreaks)
+        :return: Lines in file
+        """
+        with open(self.path, 'r') as f:
+            return f.read().splitlines()
+
+    # overwrite file with lines
+    def save(self, lines: list)->None:
+        """
+        Save the list lines as lines to the file
+        :param lines: list of lines to be saved
+        :return: None
+        """
+        with open(self.path, 'w') as f:
+            f.write('\n'.join(lines))
+
+    # returns if a file exists
+    def exists(self)->bool:
+        """
+        Returns whether file specified in constructor exists
+        :return: Whether file exists
+        """
+        return path.isfile(self.path)
+
 
 class Book:
 
@@ -63,12 +98,18 @@ class Book:
 
 def main():
 
-    library = [
-        Book('Boek 1', 'Mies', 1000),
-        Book('Boek 2', 'Erik', 1000),
-        Book('Boek 3', 'Gert', 1000),
-        Book('Boek 4', 'John', 1000),
-    ]
+    library_file_path = 'boeken.txt'
+    library_file = File( library_file_path)
+    library = []
+
+    if not library_file.exists():
+        raise FileNotFoundError('Can\'t find specified dictionary file')
+
+    library_lines = library_file.get_lines()
+
+    for line in library_lines:
+        title, writer, pages = line.split('|')
+        library.append(Book(title, writer, int(pages)))
 
     total_pages = 0
 
