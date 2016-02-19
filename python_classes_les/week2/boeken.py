@@ -9,6 +9,16 @@ class Book:
         self.pages = pages
         self.code = self.gen_code()
 
+    def __str__(self) -> str:
+        return "Titel: {}\nAuteur: {}\nStatus: {}\nPagina's: {}\n".format(
+                    self.title, self.writer,
+                    {
+                        True: "Beschikbaar",
+                        False: "Niet beschrikbaar"
+                    }[self.available],
+                    self.pages
+                )
+
     def set_title(self, new_title: str)->None:
         self.set_code(self.gen_code())  # gen new code because it's changed
         self.title = new_title
