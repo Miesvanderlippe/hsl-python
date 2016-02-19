@@ -7,15 +7,17 @@ class Book:
         self.writer = writer
         self.available = available
         self.pages = pages
-        self.code = ''
+        self.code = self.gen_code()
 
     def set_title(self, new_title: str)->None:
+        self.set_code(self.gen_code())  # gen new code because it's changed
         self.title = new_title
 
     def get_title(self)->str:
         return self.title
 
     def set_writer(self, new_writer: str)->None:
+        self.set_code(self.gen_code())  # gen new code because it's changed
         self.writer = new_writer
 
     def get_writer(self)->str:
@@ -39,8 +41,14 @@ class Book:
     def set_code(self, new_code: str)->None:
         self.code = new_code
 
-    def gen_code(self)->None:
-        raise NotImplementedError()
+    def gen_code(self)->str:
+        writer_last_name = self.writer.split(' ')
+        writer_last_name = writer_last_name[-1]
+
+        new_code = self.title[0:2] + writer_last_name[0:2]
+        new_code = new_code.upper()
+
+        return new_code
 
 
 def main():
