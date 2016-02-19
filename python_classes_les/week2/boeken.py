@@ -1,11 +1,11 @@
 
 class Book:
 
-    def __init__(self):
-        self.title = ''
-        self.writer = ''
-        self.available = False
-        self.pages = 0
+    def __init__(self, title: str, writer: str, available: bool, pages: int):
+        self.title = title
+        self.writer = writer
+        self.available = available
+        self.pages = pages
         self.code = ''
 
     def set_title(self, new_title: str)->None:
@@ -33,6 +33,12 @@ class Book:
         return self.pages
 
     def get_code(self)->str:
+        return self.code
+
+    def set_code(self, new_code: str)->None:
+        self.code = new_code
+
+    def gen_code(self)->None:
         raise NotImplementedError()
 
 
