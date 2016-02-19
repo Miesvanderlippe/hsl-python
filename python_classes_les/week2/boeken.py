@@ -1,7 +1,8 @@
 
 class Book:
 
-    def __init__(self, title: str, writer: str, available: bool, pages: int):
+    def __init__(self, title: str, writer: str, pages: int,
+                 available: bool = True):
         self.title = title
         self.writer = writer
         self.available = available
