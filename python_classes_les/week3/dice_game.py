@@ -5,7 +5,7 @@ class Dice:
 
     _sides = int
 
-    def __int__(self):
+    def __int__(self)->None:
         self.sides = 6
         self.total = 0
 
@@ -15,11 +15,11 @@ class Dice:
         return roll
 
     @property
-    def sides(self):
+    def sides(self)->int:
         return self._sides
 
     @sides.setter
-    def sides(self, value):
+    def sides(self, value)->None:
 
         if value % 2 > 0 or 2 < value > 20:
             value = 6
