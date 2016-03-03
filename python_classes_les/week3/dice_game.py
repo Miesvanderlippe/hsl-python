@@ -21,7 +21,7 @@ class Dice:
     @sides.setter
     def sides(self, value: int)->None:
 
-        if value % 2 > 0 or 2 < value > 20:
+        if value not in [2, 4, 6, 8, 10, 12, 20]:
             value = 6
 
         self._sides = value
