@@ -5,8 +5,8 @@ class Dice:
 
     _sides = int
 
-    def __int__(self)->None:
-        self.sides = 6
+    def __int__(self, sides: int = 6)->None:
+        self.sides = sides
         self.total = 0
 
     def roll(self):
@@ -19,7 +19,7 @@ class Dice:
         return self._sides
 
     @sides.setter
-    def sides(self, value)->None:
+    def sides(self, value: int)->None:
 
         if value % 2 > 0 or 2 < value > 20:
             value = 6
