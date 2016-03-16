@@ -1,10 +1,10 @@
 
-def kwargs(**kwargs)->None:
+def kwargs_test(normale_parameter, **kwargs)->None:
     print(kwargs)
 
 
 def main()->None:
-    kwargs(yolo='test')
+    kwargs_test('Parameter', keyword_argument='test')
 
 if __name__ == '__main__':
     main()
