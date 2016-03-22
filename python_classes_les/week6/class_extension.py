@@ -1,5 +1,5 @@
 
-class Square:
+class Rectangle:
 
     width = int
     height = int
@@ -15,3 +15,11 @@ class Square:
     @property
     def surface(self)->int:
         return self.height * self.width
+
+
+def main()->None:
+    shape1 = Rectangle(100, 200)
+
+
+if __name__ == '__main__':
+    main()
