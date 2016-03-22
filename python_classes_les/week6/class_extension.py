@@ -1,11 +1,7 @@
-from math import pi
 from shapes import Rectangle, Square, Circle
 
 
 def main()->None:
-
-    print(pi)
-
     shape1 = Rectangle(100, 200)
     shape2 = Square(100)
     shape3 = Circle(100)

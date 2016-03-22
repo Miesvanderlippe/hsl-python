@@ -1,3 +1,5 @@
+from math import pi
+
 class Rectangle:
 
     width = int
