@@ -11,3 +11,7 @@ class Square:
     @property
     def perimeter(self)->int:
         return (self.height * 2) + (self.width * 2)
+
+    @property
+    def surface(self)->int:
+        return self.height * self.width
